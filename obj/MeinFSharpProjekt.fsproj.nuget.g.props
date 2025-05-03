@@ -14,5 +14,10 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\duets\.nuget\packages\fsharp.core\9.0.201</PkgFSharp_Core>
+    <PkgPlotly_NET Condition=" '$(PkgPlotly_NET)' == '' ">C:\Users\duets\.nuget\packages\plotly.net\2.0.0-preview.16</PkgPlotly_NET>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\duets\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgPlotly_NET_Interactive Condition=" '$(PkgPlotly_NET_Interactive)' == '' ">C:\Users\duets\.nuget\packages\plotly.net.interactive\2.0.0-preview.16</PkgPlotly_NET_Interactive>
+    <PkgMathNet_Numerics Condition=" '$(PkgMathNet_Numerics)' == '' ">C:\Users\duets\.nuget\packages\mathnet.numerics\5.0.0</PkgMathNet_Numerics>
+    <PkgFSharp_Data Condition=" '$(PkgFSharp_Data)' == '' ">C:\Users\duets\.nuget\packages\fsharp.data\6.6.0</PkgFSharp_Data>
   </PropertyGroup>
 </Project>

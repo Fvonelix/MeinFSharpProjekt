@@ -45,6 +45,26 @@
               "target": "Package",
               "version": "[9.0.201, )",
               "generatePathProperty": true
+            },
+            "FSharp.Data": {
+              "target": "Package",
+              "version": "[6.6.0, )",
+              "generatePathProperty": true
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[5.0.0, )",
+              "generatePathProperty": true
+            },
+            "Plotly.NET": {
+              "target": "Package",
+              "version": "[2.0.0-preview.16, )",
+              "generatePathProperty": true
+            },
+            "Plotly.NET.Interactive": {
+              "target": "Package",
+              "version": "[2.0.0-preview.16, )",
+              "generatePathProperty": true
             }
           },
           "imports": [
