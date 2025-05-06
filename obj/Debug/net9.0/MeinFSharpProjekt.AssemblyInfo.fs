@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("MeinFSharpProjekt")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d277884e611900c9e0b7f7e25aebd0f5e1f3462e")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc84286247dcd379c27550ccf6f78b6d81f8f407")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("MeinFSharpProjekt")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("MeinFSharpProjekt")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

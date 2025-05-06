@@ -1,13 +1,19 @@
-﻿open Plotly.NET
+﻿
+open System
+open System.IO
+open Plotly.NET
+open FSharp.Data
+open RandomGenerator
 
-// Beispiel-Daten
-let data = [ (1.0, 2.0); (2.0, 3.5); (3.0, 5.0); (4.0, 6.5) ]
 
-// Mittelwert-Funktion
-let mean xs = List.sum xs / float (List.length xs)
+// CSV-Datei-Typ definieren (Pfad egal, nur für Typinferenz)
+type DataCsv = CsvProvider<"data.csv">
 
-// Lineare Regression
-let linearRegression data =
+// Mittelwert-Funktion für float-Werte
+let mean (xs: float list) = List.sum xs / float (List.length xs)
+
+// Lineare Regression mit float-Daten
+let linearRegression (data: (float * float) list) =
     let xs, ys = List.unzip data
     let xMean, yMean = mean xs, mean ys
     let numerator = List.sum (List.map2 (fun x y -> (x - xMean) * (y - yMean)) xs ys)
@@ -16,51 +22,52 @@ let linearRegression data =
     let b = yMean - m * xMean
     (m, b)
 
-// Quadratische Regression
-let quadraticRegression data =
-    let xs, ys = List.unzip data
-    let design =
-        xs |> List.map (fun x -> [| x * x; x; 1.0 |]) |> array2D
-    let X = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(design)
-    let y = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.Dense(Array.ofList ys)
-    let coeffs = (X.TransposeThisAndMultiply(X)).Inverse() * X.TransposeThisAndMultiply(y)
-    let a, b, c = coeffs.[0], coeffs.[1], coeffs.[2]
-    (a, b, c)
+// Plot-Funktion, die CSV einliest und alles erstellt
+let plotFromCSV (csvPath: string) =
+    let csv = DataCsv.Load(csvPath)
 
-// Plot erstellen
-[<EntryPoint>]
-let main _ =
-    let xs, ys = List.unzip data
+    // Konvertiere decimal-Werte zu float!
+    let data =
+        csv.Rows
+        |> Seq.map (fun row -> (float row.X, float row.Y))
+        |> List.ofSeq
 
-    // Lineare Regressionswerte berechnen
+    let xs, ys = List.unzip data
     let m, b = linearRegression data
     let linearFit = xs |> List.map (fun x -> m * x + b)
 
-    // Quadratische Regressionswerte berechnen
-    let a, b2, c = quadraticRegression data
-    let quadraticFit = xs |> List.map (fun x -> a * x * x + b2 * x + c)
+    let points = Chart.Point(xs, ys, Name="Originaldaten")
+    let line = Chart.Line(xs, linearFit, Name="Lineare Regression")
 
-    // Streudiagramm der Originaldaten
-    let points = Chart.Point(xs, ys, Name="Datenpunkte")
-
-    // Lineare Fit-Kurve
-    let lineFit = Chart.Line(xs, linearFit, Name="Lineare Regression")
-
-    // Quadratische Fit-Kurve
-    let quadFit: GenericChart.GenericChart = Chart.Line(xs, quadraticFit, Name="Quadratische Regression")
-
-    // Plot kombinieren
     let chart =
-        [ points; lineFit; quadFit ]
+        [ points; line ]
         |> Chart.combine
-        |> Chart.withTitle "Regression von Datenpunkten"
-        |> Chart.withXAxisStyle "x"
-        |> Chart.withYAxisStyle "y"
+        |> Chart.withTitle "CSV-Daten mit Linearer Regression"
+        |> Chart.withXAxisStyle "X"
+        |> Chart.withYAxisStyle "Y"
 
-    // Diagramm als HTML speichern
-    chart |> Chart.saveHtmlAs "regression_plot.html"
+    let outputPath = "plot_from_csv.html"
+    chart |> Chart.saveHtmlAs outputPath
+    printfn $"Plot gespeichert unter: {Path.GetFullPath(outputPath)}"
 
-
-    printfn "Plot wurde als HTML gespeichert. Öffne die Datei 'regression_plot.html' im Browser."
-
+// Einstiegspunkt
+[<EntryPoint>]
+let main argv =
+    let path = @"C:\Users\duets\Projekts\F#Projekt\MeinFSharpProjekt\data.csv"
+    if File.Exists path then
+        plotFromCSV path
+    else
+        printfn "Datei 'data.csv' wurde nicht gefunden."
     0
+(* [<EntryPoint>]
+let main argv =
+    let path = @"C:\Users\duets\Projekts\F#Projekt\MeinFSharpProjekt\data.csv"
+
+    if not (File.Exists path) then
+        printfn "Generiere neue Zufallsdaten..."
+        generateAndSave path
+        printfn "Datei erstellt: %s" path
+    else
+        printfn "Datei existiert bereits: %s" path
+    0
+ *)
