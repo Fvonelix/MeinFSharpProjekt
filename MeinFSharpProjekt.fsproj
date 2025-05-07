@@ -6,8 +6,9 @@
     <RootNamespace>F_Projekt</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>    
-    <Compile Include="Random_genarator.fs" />
+  <ItemGroup>     
+    <Compile Include="Random_genarator.fs" /> 
+    <Compile Include="Point_fitter.fs" />
     <Compile Include="Program.fs" />
 
   </ItemGroup>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj": {}
+    "c:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj": {
+    "c:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj",
+        "projectUniqueName": "c:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj",
         "projectName": "MeinFSharpProjekt",
-        "projectPath": "C:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj",
+        "projectPath": "c:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj",
         "packagesPath": "C:\\Users\\duets\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\obj\\",
+        "outputPath": "c:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\duets\\AppData\\Roaming\\NuGet\\NuGet.Config"

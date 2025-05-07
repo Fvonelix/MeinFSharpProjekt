@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ShpRRykrhX4=",
+  "dgSpecHash": "KgCxA4I7N2c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj",
+  "projectFilePath": "c:\\Users\\duets\\Projekts\\F#Projekt\\MeinFSharpProjekt\\MeinFSharpProjekt.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\duets\\.nuget\\packages\\dynamicobj\\0.2.0\\dynamicobj.0.2.0.nupkg.sha512",
     "C:\\Users\\duets\\.nuget\\packages\\fsharp.core\\9.0.201\\fsharp.core.9.0.201.nupkg.sha512",

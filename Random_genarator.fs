@@ -2,21 +2,29 @@ module RandomGenerator
 
 open System
 open System.IO
+open System.Globalization
 
 let random = Random()
 
-let generateData numLines =
-    [ for i in 1..numLines do
+let generateData numPoints =
+    [ for i in 1..numPoints do
         let x = float i
-        let y = (random.NextDouble() * 10.0) + 2.0
+        // y liegt zwischen x-1.00 und x+1.00
+        let y = (random.NextDouble() * 2.0) + (x - 1.0)  // (random.NextDouble() * 2) gibt einen Wert zwischen 0 und 2 zurück
         yield (x, y) ]
 
 let saveCsv (filePath: string) (data: (float * float) list) =
-    use writer = new StreamWriter(filePath)
+    // Datei wird hier überschrieben (nicht angehängt!)
+    use writer = new StreamWriter(filePath, append = false)
     writer.WriteLine("X,Y")
-    data |> List.iter (fun (x, y) -> writer.WriteLine(sprintf "%f,%f" x y))
+    // Verwende hier das amerikanische Kulturformat (Punkt als Dezimaltrennzeichen)
+    let cultureInfo = CultureInfo("en-US")
+    for (x, y) in data do
+        // Formatierte Zahl mit Tausendertrennzeichen und Punkt als Dezimaltrennzeichen
+        let formattedX = x.ToString("N2", cultureInfo)  // "N2" für 2 Dezimalstellen
+        let formattedY = y.ToString("N2", cultureInfo)  // "N2" für 2 Dezimalstellen
+        writer.WriteLine($"{formattedX},{formattedY}")
 
-let generateAndSave path =
-    let data = generateData 100
-    saveCsv path data
-
+let generateAndSave (filePath: string) (numPoints: int) =
+    let data = generateData numPoints
+    saveCsv filePath data
